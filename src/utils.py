@@ -165,9 +165,14 @@ class FileManager:
                 if f.is_file()
             )
             
-            # Get available space
-            stat = os.statvfs(str(self.generated_files_dir))
-            available_space = stat.f_bavail * stat.f_frsize
+            # Get available space - Windows and Unix compatibility
+            if os.name == 'nt':  # Windows
+                import shutil
+                total, used, free = shutil.disk_usage(str(self.generated_files_dir))
+                available_space = free
+            else:  # Unix/Linux
+                stat = os.statvfs(str(self.generated_files_dir))
+                available_space = stat.f_bavail * stat.f_frsize
             
             return {
                 "used_bytes": total_size,

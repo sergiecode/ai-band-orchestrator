@@ -166,8 +166,9 @@ async def test_cleanup_old_files(file_manager):
     new_file.write_text("new content")
     
     # Modify old file timestamp to make it appear old
+    import os
     old_time = time.time() - (25 * 3600)  # 25 hours ago
-    old_file.touch(times=(old_time, old_time))
+    os.utime(old_file, (old_time, old_time))
     
     # Cleanup files older than 24 hours
     await file_manager.cleanup_old_files(max_age_hours=24)

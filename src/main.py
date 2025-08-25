@@ -169,7 +169,7 @@ async def generate_accompaniment(request: GenerationRequest):
             raise HTTPException(status_code=503, detail="Backend client not available")
         
         # Convert Pydantic models to dictionaries for backend
-        chords_data = [chord.dict() for chord in request.chord_progression.chords]
+        chords_data = [chord.model_dump() for chord in request.chord_progression.chords]
         
         # Generate tracks using backend
         result = await backend_client.generate_tracks(
@@ -247,7 +247,7 @@ async def sync_transport(state: TransportState):
     """Sync transport state with all connected plugins"""
     message = WebSocketMessage(
         type="transport_sync",
-        data=state.dict()
+        data=state.model_dump()
     )
     
     # Broadcast to all connected plugins
@@ -356,7 +356,7 @@ async def handle_realtime_generation(plugin_id: str, generation_data: Dict):
         if websocket:
             await websocket.send_text(WebSocketMessage(
                 type="generation_complete",
-                data=result.dict()
+                data=result.model_dump()
             ).json())
             
     except Exception as e:

@@ -21,7 +21,7 @@ from plugin_client import PluginClient
 
 
 @pytest.fixture
-async def temp_plugin_folder():
+def temp_plugin_folder():
     """Create a temporary folder for testing"""
     temp_dir = Path(tempfile.mkdtemp())
     yield temp_dir
@@ -29,12 +29,10 @@ async def temp_plugin_folder():
 
 
 @pytest.fixture
-async def plugin_client(temp_plugin_folder):
+def plugin_client(temp_plugin_folder):
     """Create a plugin client for testing"""
     client = PluginClient(str(temp_plugin_folder))
-    await client.start_monitoring()
     yield client
-    await client.stop_monitoring()
 
 
 @pytest.mark.asyncio

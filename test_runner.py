@@ -26,7 +26,9 @@ def run_command(cmd, description):
             shell=True, 
             capture_output=True, 
             text=True,
-            cwd=str(Path(__file__).parent)
+            cwd=str(Path(__file__).parent),
+            encoding='utf-8',
+            errors='replace'
         )
         
         duration = time.time() - start_time
