@@ -84,3 +84,15 @@
 2025-08-25 08:36:14,204 - src.backend_client - INFO - Backend client initialized successfully
 2025-08-25 08:36:14,402 - src.plugin_client - INFO - Plugin client initialized with folder: C:\Users\SnS_D\Desktop\IA\ai-band-orchestrator\generated_files
 2025-08-25 08:36:14,402 - src.utils - INFO - File monitoring started
+2025-08-25 08:36:47,935 - ai-band-orchestrator - INFO - Shutting down AI Band Orchestrator...
+2025-08-25 08:36:47,935 - src.utils - INFO - File monitoring stopped
+2025-08-25 08:36:48,532 - ai-band-orchestrator - INFO - Logging system initialized
+2025-08-25 08:36:48,536 - ai-band-orchestrator - INFO - Starting AI Band Orchestrator...
+2025-08-25 08:36:48,537 - backend_client - INFO - Backend client initialized successfully
+2025-08-25 08:36:48,746 - plugin_client - INFO - Plugin client initialized with folder: C:\Users\SnS_D\Desktop\IA\ai-band-orchestrator\generated_files
+2025-08-25 08:36:48,747 - utils - INFO - File monitoring started
+2025-08-25 08:36:49,449 - ai-band-orchestrator - INFO - Logging system initialized
+2025-08-25 08:36:49,453 - ai-band-orchestrator - INFO - Starting AI Band Orchestrator...
+2025-08-25 08:36:49,454 - backend_client - INFO - Backend client initialized successfully
+2025-08-25 08:36:49,653 - plugin_client - INFO - Plugin client initialized with folder: C:\Users\SnS_D\Desktop\IA\ai-band-orchestrator\generated_files
+2025-08-25 08:36:49,653 - utils - INFO - File monitoring started
