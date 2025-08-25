@@ -1,0 +1,16 @@
+{
+	"version": "2.0.0",
+	"tasks": [
+		{
+			"label": "Start AI Band Orchestrator",
+			"type": "shell",
+			"command": "C:/Users/SnS_D/AppData/Local/Programs/Python/Python312/python.exe",
+			"args": [
+				"run.py"
+			],
+			"isBackground": true,
+			"problemMatcher": [],
+			"group": "build"
+		}
+	]
+}

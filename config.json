@@ -1,0 +1,24 @@
+{
+  "server": {
+    "host": "0.0.0.0",
+    "port": 8000,
+    "reload": true
+  },
+  "backend": {
+    "path": "../ai-band-backend/src",
+    "timeout": 30
+  },
+  "plugin": {
+    "folder": "./generated_files",
+    "cleanup_hours": 24,
+    "max_files": 1000
+  },
+  "logging": {
+    "level": "INFO",
+    "file": "./logs/orchestrator.log"
+  },
+  "websocket": {
+    "heartbeat_interval": 30,
+    "connection_timeout": 60
+  }
+}
