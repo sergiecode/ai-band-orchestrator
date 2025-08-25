@@ -14,7 +14,7 @@ Author: Sergie Code
 import sys
 from contextlib import asynccontextmanager
 from pathlib import Path
-from typing import Dict, List, Optional
+from typing import Dict, List, Optional, Union
 
 import uvicorn
 from fastapi import FastAPI, HTTPException, WebSocket, WebSocketDisconnect
@@ -28,9 +28,16 @@ backend_path = Path(__file__).parent.parent.parent / "ai-band-backend" / "src"
 if backend_path.exists():
     sys.path.append(str(backend_path))
 
-from backend_client import BackendClient
-from plugin_client import PluginClient
-from utils import setup_logging, FileManager
+# Import local modules
+try:
+    from .backend_client import BackendClient
+    from .plugin_client import PluginClient
+    from .utils import setup_logging, FileManager
+except ImportError:
+    # Fallback for direct execution
+    from backend_client import BackendClient
+    from plugin_client import PluginClient
+    from utils import setup_logging, FileManager
 
 # Setup logging
 logger = setup_logging()
@@ -43,8 +50,13 @@ connected_plugins: Dict[str, WebSocket] = {}
 
 
 # Pydantic models for API
+class ChordData(BaseModel):
+    chord: str
+    start_time: float
+    duration: float
+
 class ChordProgression(BaseModel):
-    chords: List[Dict[str, float]]  # [{"chord": "C", "start_time": 0.0, "duration": 2.0}]
+    chords: List[ChordData]  # [{"chord": "C", "start_time": 0.0, "duration": 2.0}]
     tempo: int = 120
     key: str = "C"
     duration: float = 32.0
@@ -156,9 +168,12 @@ async def generate_accompaniment(request: GenerationRequest):
         if not backend_client:
             raise HTTPException(status_code=503, detail="Backend client not available")
         
+        # Convert Pydantic models to dictionaries for backend
+        chords_data = [chord.dict() for chord in request.chord_progression.chords]
+        
         # Generate tracks using backend
         result = await backend_client.generate_tracks(
-            chords=request.chord_progression.chords,
+            chords=chords_data,
             tempo=request.chord_progression.tempo,
             key=request.chord_progression.key,
             track_types=request.track_types,
