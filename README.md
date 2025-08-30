@@ -304,10 +304,6 @@ When the server is running, visit:
 5. Push: `git push origin feature/new-feature`
 6. Create a Pull Request
 
-## 📄 License
-
-This project is part of the AI Band ecosystem created for educational purposes.
-
 ## 👨‍💻 Author
 
 **Sergie Code** - Software Engineer & Programming Educator
@@ -347,3 +343,4 @@ This project is part of the AI Band ecosystem created for educational purposes.
 ---
 
 **Ready to create AI-powered music? Start the orchestrator and let the AI band play! 🎸🤖🥁**
+
